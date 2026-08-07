@@ -34,9 +34,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPetModal }) => {
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
         {/* Brand Logo & Tagline */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-premium-green flex items-center justify-center shadow-solar-soft border border-solar-moss">
-            <Sun className="w-5 h-5 text-solar-gold animate-spin-slow" />
-          </div>
+          <img
+            src="https://ik.imagekit.io/yashveersinghrajpoot/solar_paw/logo.jpeg"
+            alt="Solar Paw Sense Logo"
+            className="w-10 h-10 rounded-2xl object-cover shadow-solar-soft border border-solar-borderPrimary"
+          />
           <div>
             <div className="flex items-center gap-1.5">
               <h1 className="text-base font-semibold text-solar-textPrimary tracking-tight">Solar Paw Sense</h1>

@@ -49,9 +49,11 @@ export const AuthView: React.FC = () => {
       <div className="w-full max-w-md bg-solar-card border border-solar-borderPrimary rounded-solar-3xl shadow-solar-floating p-6 sm:p-8 relative z-10">
         {/* Header Branding */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 mx-auto rounded-3xl bg-gradient-premium-green flex items-center justify-center shadow-solar-medium border border-solar-moss mb-4">
-            <Sun className="w-7 h-7 text-solar-gold animate-spin-slow" />
-          </div>
+          <img
+            src="https://ik.imagekit.io/yashveersinghrajpoot/solar_paw/logo.jpeg"
+            alt="Solar Paw Sense Logo"
+            className="w-16 h-16 mx-auto rounded-3xl object-cover shadow-solar-medium border border-solar-borderPrimary mb-4"
+          />
           <h2 className="text-2xl font-bold text-solar-textPrimary tracking-tight">Solar Paw Sense</h2>
           <p className="text-xs text-solar-textSecondary mt-1 leading-relaxed">
             The Solar-Powered AI Operating System for Pet Healthcare & Safety

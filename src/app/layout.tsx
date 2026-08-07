@@ -5,6 +5,9 @@ import { AppProvider } from '../context/AppContext';
 export const metadata: Metadata = {
   title: 'Solar Paw Sense | AI & Solar Assisted Pet Operating System',
   description: 'Ethereal, luxury pet healthcare and safety platform powered by AI and solar-assisted smart pet collars.',
+  icons: {
+    icon: 'https://ik.imagekit.io/yashveersinghrajpoot/solar_paw/logo.jpeg',
+  },
 };
 
 export default function RootLayout({

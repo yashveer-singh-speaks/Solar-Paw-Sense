@@ -33,7 +33,11 @@ export const VetExportModal: React.FC<VetExportModalProps> = ({ isOpen, onClose 
         {/* Header Certificate Branding */}
         <div className="border-b border-solar-borderPrimary pb-4 mb-5 text-center">
           <div className="flex items-center justify-center gap-2 mb-1">
-            <Sun className="w-6 h-6 text-solar-gold" />
+            <img
+              src="https://ik.imagekit.io/yashveersinghrajpoot/solar_paw/logo.jpeg"
+              alt="Solar Paw Sense Logo"
+              className="w-7 h-7 rounded-xl object-cover border border-solar-borderPrimary"
+            />
             <h2 className="text-xl font-bold text-solar-forest tracking-tight">SolarPaw Sense Official Health Certificate</h2>
           </div>
           <p className="text-xs text-solar-textMuted">Certified Telemetry & Vital Sign Verification Card for Veterinary Clinics</p>
