@@ -63,8 +63,8 @@ export const AuthView: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-solar-bg flex flex-col justify-center items-center px-4 py-8 relative overflow-hidden">
-      {/* Subtle organic solar glow background */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-solar-gold/10 via-solar-sage/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* Immersive Background Blur - Responsive Width */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[500px] h-[500px] bg-gradient-radial from-solar-gold/10 via-solar-sage/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-full max-w-md bg-solar-card border border-solar-borderPrimary rounded-solar-3xl shadow-solar-floating p-6 sm:p-8 relative z-10">
         {/* Header Branding */}

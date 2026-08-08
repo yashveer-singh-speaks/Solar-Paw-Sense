@@ -82,7 +82,7 @@ export const PetModal: React.FC<PetModalProps> = ({ isOpen, onClose, isMandatory
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block font-semibold text-solar-textPrimary mb-1">Species</label>
               <select
@@ -109,7 +109,7 @@ export const PetModal: React.FC<PetModalProps> = ({ isOpen, onClose, isMandatory
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block font-semibold text-solar-textPrimary mb-1">Age (Years)</label>
               <input

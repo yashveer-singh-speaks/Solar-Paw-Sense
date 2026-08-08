@@ -61,7 +61,7 @@ export const VetExportModal: React.FC<VetExportModalProps> = ({ isOpen, onClose 
         {/* Verified Vitals Table */}
         <div className="space-y-3 mb-6">
           <h4 className="text-xs font-bold text-solar-forest uppercase tracking-wider">Verified Telemetry Metrics (Last 24 Hours)</h4>
-          <div className="grid grid-cols-2 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <div className="p-3 rounded-xl bg-solar-card border border-solar-borderPrimary">
               <div className="text-solar-textMuted">Resting Heart Rate</div>
               <div className="text-sm font-bold text-solar-textPrimary mt-0.5">{activeTelemetry.heartRateBpm} BPM (Normal)</div>

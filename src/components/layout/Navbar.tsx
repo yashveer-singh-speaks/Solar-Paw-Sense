@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPetModal }) => {
             alt="Solar Paw Sense Logo"
             className="w-10 h-10 rounded-2xl object-cover shadow-solar-soft border border-solar-borderPrimary"
           />
-          <div>
+          <div className="hidden md:block">
             <div className="flex items-center gap-1.5">
               <h1 className="text-base font-semibold text-solar-textPrimary tracking-tight">Solar Paw Sense</h1>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-solar-gold/15 text-solar-brass border border-solar-gold/30">
@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPetModal }) => {
                   alt={activePet.name}
                   className="w-6 h-6 rounded-full object-cover border border-solar-borderPrimary"
                 />
-                <span className="text-xs sm:text-sm font-medium text-solar-textPrimary">{activePet.name}</span>
+                <span className="text-xs sm:text-sm font-medium text-solar-textPrimary hidden sm:inline">{activePet.name}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-solar-textMuted" />
               </button>
 
@@ -143,14 +143,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPetModal }) => {
             {currentUser?.role === 'SUPER_ADMIN' ? (
               <>
                 <Cpu className="w-3.5 h-3.5 text-solar-gold" />
-                <span className="hidden sm:inline">Role:</span>
-                <span className="font-bold text-solar-gold">Admin</span>
+                <span className="hidden sm:inline">Role: <span className="font-bold text-solar-gold">Admin</span></span>
               </>
             ) : (
               <>
                 <Shield className="w-3.5 h-3.5 text-solar-forest" />
-                <span className="hidden sm:inline">Role:</span>
-                <span className="font-bold text-solar-forest">Owner</span>
+                <span className="hidden sm:inline">Role: <span className="font-bold text-solar-forest">Owner</span></span>
               </>
             )}
           </button>

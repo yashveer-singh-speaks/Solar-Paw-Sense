@@ -275,11 +275,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       </div>
 
       {/* Quick Action Pill Buttons */}
-      <div className="flex flex-wrap gap-2 pt-2">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-2 pt-2">
         <button
           type="button"
           onClick={triggerManualGpsSync}
-          className="flex-1 min-w-[140px] py-2.5 px-4 rounded-solar-xl bg-solar-card border border-solar-borderPrimary hover:border-solar-gold text-solar-forest text-xs font-semibold flex items-center justify-center gap-2 shadow-solar-soft transition-all"
+          className="w-full sm:flex-1 py-2.5 px-4 rounded-solar-xl bg-solar-card border border-solar-borderPrimary hover:border-solar-gold text-solar-forest text-xs font-semibold flex items-center justify-center gap-2 shadow-solar-soft transition-all"
         >
           <RefreshCw className="w-3.5 h-3.5 text-solar-gold" />
           Refresh High-Precision GPS
@@ -288,7 +288,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <button
           type="button"
           onClick={onOpenVetExportModal}
-          className="flex-1 min-w-[140px] py-2.5 px-4 rounded-solar-xl bg-solar-card border border-solar-borderPrimary hover:border-solar-gold text-solar-forest text-xs font-semibold flex items-center justify-center gap-2 shadow-solar-soft transition-all"
+          className="w-full sm:flex-1 py-2.5 px-4 rounded-solar-xl bg-solar-card border border-solar-borderPrimary hover:border-solar-gold text-solar-forest text-xs font-semibold flex items-center justify-center gap-2 shadow-solar-soft transition-all"
         >
           <FileText className="w-3.5 h-3.5 text-solar-gold" />
           Export Vet Health Card
@@ -297,7 +297,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <button
           type="button"
           onClick={onOpenSafeZoneModal}
-          className="flex-1 min-w-[140px] py-2.5 px-4 rounded-solar-xl bg-solar-card border border-solar-borderPrimary hover:border-solar-gold text-solar-forest text-xs font-semibold flex items-center justify-center gap-2 shadow-solar-soft transition-all"
+          className="w-full sm:flex-1 py-2.5 px-4 rounded-solar-xl bg-solar-card border border-solar-borderPrimary hover:border-solar-gold text-solar-forest text-xs font-semibold flex items-center justify-center gap-2 shadow-solar-soft transition-all"
         >
           <MapPin className="w-3.5 h-3.5 text-solar-gold" />
           Configure Safe Zones

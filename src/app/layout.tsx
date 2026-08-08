@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AppProvider } from '../context/AppContext';
 
@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   icons: {
     icon: 'https://ik.imagekit.io/yashveersinghrajpoot/solar_paw/logo.jpeg',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
