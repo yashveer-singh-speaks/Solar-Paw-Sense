@@ -90,8 +90,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Load from LocalStorage on mount
   useEffect(() => {
     try {
-      const savedUser = localStorage.getItem(STORAGE_KEYS.USER);
+      // Use sessionStorage for user login session so opening domain URL always lands on Auth screen
+      const savedUser = sessionStorage.getItem(STORAGE_KEYS.USER);
       if (savedUser) setCurrentUser(JSON.parse(savedUser));
+      // Clean up legacy localStorage user if present
+      localStorage.removeItem(STORAGE_KEYS.USER);
 
       const savedPets = localStorage.getItem(STORAGE_KEYS.PETS);
       if (savedPets) setPets(JSON.parse(savedPets));
@@ -126,7 +129,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Sync state changes to LocalStorage
   useEffect(() => {
     try {
-      if (currentUser) localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(currentUser));
+      if (currentUser) {
+        sessionStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(currentUser));
+      } else {
+        sessionStorage.removeItem(STORAGE_KEYS.USER);
+      }
       localStorage.setItem(STORAGE_KEYS.PETS, JSON.stringify(pets));
       localStorage.setItem(STORAGE_KEYS.ACTIVE_PET, activePetId);
       localStorage.setItem(STORAGE_KEYS.TELEMETRY, JSON.stringify(telemetry));
@@ -192,13 +199,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (cleanEmail === 'ekaa@superadminpaw.com' && pass === 'ekaa.not.so.smart') {
       const admin = INITIAL_USERS[0];
       setCurrentUser(admin);
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(admin));
+      sessionStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(admin));
       return true;
     }
     if (cleanEmail === 'petowner@admin.com' && pass === 'petowner.so.smart') {
       const owner = INITIAL_USERS[1];
       setCurrentUser(owner);
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(owner));
+      sessionStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(owner));
       return true;
     }
     // Generic fallback login for demo purposes
@@ -212,7 +219,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         joinedDate: new Date().toISOString().split('T')[0],
       };
       setCurrentUser(fallbackUser);
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(fallbackUser));
+      sessionStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(fallbackUser));
       return true;
     }
     return false;
@@ -225,7 +232,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (existing) {
       // User already exists, log them in
       setCurrentUser(existing);
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(existing));
+      sessionStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(existing));
       return true;
     }
     const newUser: User = {
@@ -238,12 +245,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
     setAllUsers((prev) => [...prev, newUser]);
     setCurrentUser(newUser);
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(newUser));
+    sessionStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(newUser));
     return true;
   };
 
   const logout = () => {
     setCurrentUser(null);
+    sessionStorage.removeItem(STORAGE_KEYS.USER);
     localStorage.removeItem(STORAGE_KEYS.USER);
   };
 
