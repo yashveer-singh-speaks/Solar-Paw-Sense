@@ -7,6 +7,7 @@ import { INITIAL_USERS, INITIAL_PETS, INITIAL_TELEMETRY, INITIAL_COLLARS, INITIA
 interface AppContextType {
   currentUser: User | null;
   login: (email: string, pass: string) => boolean;
+  createAccount: (name: string, email: string, pass: string, role?: Role) => boolean;
   logout: () => void;
   switchUserRole: (role: Role) => void;
 
@@ -69,8 +70,8 @@ const STORAGE_KEYS = {
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Initialize with Default Logged-In User as Pet Owner
-  const [currentUser, setCurrentUser] = useState<User | null>(INITIAL_USERS[1]);
+  // Initialize with null so Auth screen is shown first unless session saved
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState<User[]>(INITIAL_USERS);
   const [pets, setPets] = useState<Pet[]>(INITIAL_PETS);
   const [activePetId, setActivePetId] = useState<string>('pet-01');
@@ -215,6 +216,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return true;
     }
     return false;
+  };
+
+  const createAccount = (name: string, email: string, pass: string, role: Role = 'PET_OWNER'): boolean => {
+    const cleanEmail = email.toLowerCase().trim();
+    if (!cleanEmail || !pass) return false;
+    const existing = allUsers.find((u) => u.email.toLowerCase() === cleanEmail);
+    if (existing) {
+      // User already exists, log them in
+      setCurrentUser(existing);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(existing));
+      return true;
+    }
+    const newUser: User = {
+      id: `user-${Date.now()}`,
+      email: cleanEmail,
+      name: name.trim() || cleanEmail.split('@')[0],
+      role,
+      avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80',
+      joinedDate: new Date().toISOString().split('T')[0],
+    };
+    setAllUsers((prev) => [...prev, newUser]);
+    setCurrentUser(newUser);
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(newUser));
+    return true;
   };
 
   const logout = () => {
@@ -440,6 +465,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       value={{
         currentUser,
         login,
+        createAccount,
         logout,
         switchUserRole,
         pets,

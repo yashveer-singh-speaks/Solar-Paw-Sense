@@ -7,9 +7,10 @@ import { X, Plus, Sparkles } from 'lucide-react';
 interface PetModalProps {
   isOpen: boolean;
   onClose: () => void;
+  isMandatory?: boolean;
 }
 
-export const PetModal: React.FC<PetModalProps> = ({ isOpen, onClose }) => {
+export const PetModal: React.FC<PetModalProps> = ({ isOpen, onClose, isMandatory = false }) => {
   const { addPet } = useApp();
   const [name, setName] = useState('');
   const [species, setSpecies] = useState<'Dog' | 'Cat' | 'Other'>('Dog');
@@ -44,19 +45,29 @@ export const PetModal: React.FC<PetModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-solar-card border border-solar-borderPrimary rounded-solar-3xl shadow-solar-floating p-6 relative animate-in fade-in zoom-in-95 duration-150">
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full text-solar-textMuted hover:text-solar-forest hover:bg-solar-bgSecondary transition-colors"
-        >
-          <X className="w-4 h-4" />
-        </button>
+        {!isMandatory && (
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            className="absolute top-4 right-4 p-1.5 rounded-full text-solar-textMuted hover:text-solar-forest hover:bg-solar-bgSecondary transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
 
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <Sparkles className="w-5 h-5 text-solar-gold" />
-          <h3 className="text-base font-bold text-solar-textPrimary">Register New Pet & Solar Collar</h3>
+          <h3 className="text-base font-bold text-solar-textPrimary">
+            {isMandatory ? 'Welcome! Register Your First Pet' : 'Register New Pet & Solar Collar'}
+          </h3>
         </div>
+
+        {isMandatory && (
+          <p className="text-xs text-solar-forest font-medium mb-4 p-2.5 rounded-solar-xl bg-solar-gold/15 border border-solar-gold/30">
+            🐾 Register your pet to auto-pair their solar collar and unlock your live wellness dashboard.
+          </p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-3 text-xs">
           <div>
