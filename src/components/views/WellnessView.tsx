@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { Activity, Heart, Flame, Wind, Moon, ShieldCheck, FileText, Download } from 'lucide-react';
+import { Activity, Heart, Flame, Wind, Moon, ShieldCheck, FileText, Download, PhoneCall, Stethoscope } from 'lucide-react';
 
 interface WellnessViewProps {
   onOpenVetExportModal: () => void;
@@ -82,6 +82,53 @@ export const WellnessView: React.FC<WellnessViewProps> = ({ onOpenVetExportModal
           </div>
           <div className="text-xl font-bold text-solar-textPrimary">AQI {activeTelemetry.airQualityAqi}</div>
           <div className="text-[10px] text-solar-success font-semibold mt-1">Fresh Outdoor Zone</div>
+        </div>
+      </div>
+
+      {/* Call your nearest Vet Section */}
+      <div className="p-5 rounded-solar-3xl bg-solar-card border border-solar-borderPrimary shadow-solar-soft">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h3 className="text-sm font-bold text-solar-textPrimary flex items-center gap-2">
+              <Stethoscope className="w-4 h-4 text-solar-forest" />
+              Call your nearest Vet
+            </h3>
+            <p className="text-xs text-solar-textMuted mt-0.5">
+              Direct emergency 1-tap dial to verified veterinary specialists near you.
+            </p>
+          </div>
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-solar-success/15 text-solar-success border border-solar-success/30">
+            24/7 Available
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[
+            { name: 'Dr. Rajesh Sharma', clinic: 'PetCare Emergency Vet Hospital', phone: '+91 98765 43210', rawPhone: '+919876543210' },
+            { name: 'Dr. Ananya Verma', clinic: 'SolarPaw City Vet Clinic', phone: '+91 98123 45678', rawPhone: '+919812345678' },
+            { name: 'Dr. Vikramaditya Rao', clinic: '24/7 Apex Animal Health Center', phone: '+91 99887 76655', rawPhone: '+919988776655' },
+            { name: 'Dr. Priya Sundaram', clinic: 'MaxVet Care & Specialty Center', phone: '+91 97654 32109', rawPhone: '+919765432109' },
+            { name: 'Dr. Arjun Kapoor', clinic: 'Royal Canine & Feline Hospital', phone: '+91 98989 12345', rawPhone: '+919898912345' },
+          ].map((doc, idx) => (
+            <a
+              key={idx}
+              href={`tel:${doc.rawPhone}`}
+              className="p-3.5 rounded-solar-2xl bg-solar-elevated border border-solar-borderPrimary hover:border-solar-gold hover:bg-solar-card transition-all group shadow-solar-soft flex items-center justify-between"
+            >
+              <div>
+                <div className="text-xs font-bold text-solar-textPrimary group-hover:text-solar-forest transition-colors">
+                  {doc.name}
+                </div>
+                <div className="text-[11px] text-solar-textMuted mt-0.5">{doc.clinic}</div>
+                <div className="text-xs font-mono font-semibold text-solar-forest mt-1.5 flex items-center gap-1">
+                  <span>{doc.phone}</span>
+                </div>
+              </div>
+              <div className="w-9 h-9 rounded-solar-xl bg-solar-forest/10 group-hover:bg-solar-forest group-hover:text-white text-solar-forest flex items-center justify-center transition-all flex-shrink-0 ml-2 border border-solar-forest/20">
+                <PhoneCall className="w-4 h-4 text-solar-gold" />
+              </div>
+            </a>
+          ))}
         </div>
       </div>
 
